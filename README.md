@@ -27,7 +27,7 @@ Em desenvolvimento
 
 ## 📌 Organização e Issues
 
-Foram criadas [Issues do GitHub](https://github.com/BiancaButti/StudioGhibliApp/issues?q=is%3Aissue+state%3Aclosed) neste link.
+Foram criadas [issues](https://github.com/BiancaButti/StudioGhibli-2.0/issues) neste link.
 
 Essa prática foi adotada para manter o controle do progresso e registrar etapas do desenvolvimento de forma clara e organizada.
 
