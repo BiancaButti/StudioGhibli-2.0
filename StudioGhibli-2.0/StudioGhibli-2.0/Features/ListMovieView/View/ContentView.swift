@@ -12,10 +12,10 @@ struct ContentView: View {
                 ProgressView()
             case .success(let movies):
                 List(movies, id: \.id) { movie in
-                    Text(movie.title ?? "")
+                    Text(movie.title)
                 }
             case .failure(let error):
-                Text("Erro: \(error.localizedDescription)")
+                Text("Erro: \(error)")
             }
         }
         .task {
