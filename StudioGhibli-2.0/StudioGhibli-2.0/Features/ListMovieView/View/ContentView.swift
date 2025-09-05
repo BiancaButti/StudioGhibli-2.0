@@ -10,9 +10,9 @@ struct ContentView: View {
                 Text("No movie loaded")
             case .loading:
                 ProgressView()
-            case .success(let movies):
-                List(movies, id: \.id) { movie in
-                    Text(movie.title)
+            case .success( _):
+                List(viewModel.state.value ?? []) { movie in
+                    MovieRowView(movie: movie)
                 }
             case .failure(let error):
                 Text("Erro: \(error)")
