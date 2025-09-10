@@ -4,7 +4,7 @@ struct MovieRowView: View {
     let movie: MovieViewData
     
     var body: some View {
-        HStack(alignment: .top) {
+        HStack {
             AsyncImage(url: movie.imageURL) { image in
                 image.resizable().scaledToFill()
             } placeholder: {
