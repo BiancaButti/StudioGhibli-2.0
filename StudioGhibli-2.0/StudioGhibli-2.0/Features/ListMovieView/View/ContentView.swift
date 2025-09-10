@@ -7,12 +7,12 @@ struct ContentView: View {
         VStack {
             switch viewModel.state {
             case .idle:
-                Text("No movie loaded")
+                EmptyView()
             case .loading:
                 ProgressView()
-            case .success(let movies):
-                List(movies, id: \.id) { movie in
-                    Text(movie.title)
+            case .success( _):
+                List(viewModel.state.value ?? []) { movie in
+                    MovieRowView(movie: movie)
                 }
             case .failure(let error):
                 Text("Erro: \(error)")
