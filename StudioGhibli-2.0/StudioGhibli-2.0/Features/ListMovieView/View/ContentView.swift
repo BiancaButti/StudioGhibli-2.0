@@ -7,7 +7,7 @@ struct ContentView: View {
         VStack {
             switch viewModel.state {
             case .idle:
-                Text("No movie loaded")
+                EmptyView()
             case .loading:
                 ProgressView()
             case .success( _):
