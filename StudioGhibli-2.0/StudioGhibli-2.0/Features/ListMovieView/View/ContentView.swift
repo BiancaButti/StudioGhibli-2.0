@@ -11,8 +11,10 @@ struct ContentView: View {
             case .loading:
                 ProgressView()
             case .success( _):
-                List(viewModel.state.value ?? []) { movie in
-                    MovieRowView(movie: movie)
+                NavigationStack {
+                    List(viewModel.state.value ?? []) { movie in
+                        MovieRowView(movie: movie)
+                    }
                 }
             case .failure(let error):
                 Text("Erro: \(error)")

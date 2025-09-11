@@ -20,13 +20,10 @@ struct MovieRowView: View {
                     .layoutPriority(1)
             }
             Spacer()
-            Button {
-                print("clicked button")
+            NavigationLink {
+                DetailsMovieView(movieModel: movie)
             } label: {
-                Image(systemName: "chevron.right")
-                    .font(.title2)
-                    .foregroundColor(.blue)
-                    .padding()
+                EmptyView()
             }
         }
         .padding()
