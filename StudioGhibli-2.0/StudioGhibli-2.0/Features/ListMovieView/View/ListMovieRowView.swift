@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MovieRowView: View {
+struct ListMovieRowView: View {
     let movie: MovieViewData
     
     var body: some View {
@@ -19,6 +19,7 @@ struct MovieRowView: View {
                     .lineLimit(2)
                     .layoutPriority(1)
             }
+
             Spacer()
             NavigationLink {
                 DetailsMovieView(movieModel: movie)
@@ -27,6 +28,5 @@ struct MovieRowView: View {
             }
         }
         .padding()
-
     }
 }
