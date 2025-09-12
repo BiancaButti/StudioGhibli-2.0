@@ -4,7 +4,7 @@ import SwiftUI
 struct StudioGhibli_2_0App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ListMovieView()
         }
     }
 }
