@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct MovieRowView: View {
-    let movie: MovieViewData
+struct ListMovieRowView: View {
+    let movie: ListMovieDataModel
     
     var body: some View {
         HStack {
@@ -20,16 +20,12 @@ struct MovieRowView: View {
                     .layoutPriority(1)
             }
             Spacer()
-            Button {
-                print("clicked button")
+            NavigationLink {
+                DetailsMovieView(movieModel: movie)
             } label: {
-                Image(systemName: "chevron.right")
-                    .font(.title2)
-                    .foregroundColor(.blue)
-                    .padding()
+                Text("")
             }
         }
         .padding()
-
     }
 }

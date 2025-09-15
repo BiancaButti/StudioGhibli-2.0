@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ContentView: View {
+struct ListMovieView: View {
     @StateObject private var viewModel = ListMovieViewModel()
     
     var body: some View {
@@ -10,9 +10,11 @@ struct ContentView: View {
                 EmptyView()
             case .loading:
                 ProgressView()
-            case .success( _):
-                List(viewModel.state.value ?? []) { movie in
-                    MovieRowView(movie: movie)
+            case .success(_):
+                NavigationStack {
+                    List(viewModel.state.value ?? []) { movie in
+                        ListMovieRowView(movie: movie)
+                    }
                 }
             case .failure(let error):
                 Text("Erro: \(error)")
@@ -23,4 +25,3 @@ struct ContentView: View {
         }
     }
 }
-
