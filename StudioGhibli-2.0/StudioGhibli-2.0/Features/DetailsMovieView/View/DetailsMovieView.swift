@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct DetailsMovieView: View {
-    let movieModel: MovieViewData
+    let movieModel: ListMovieDataModel
     
     @Environment(\.dismiss)
     private var dismiss
@@ -19,22 +19,31 @@ struct DetailsMovieView: View {
                         onBack: { dismiss() }
                     )
                     
-                    DetailsMovieTitleView(title: movieModel.title)
-                    
-                    VStack(alignment: .leading, spacing: 20) {
-                        HStack {
-                            DetailMovieMetadataRowView(label: "Producer", value: movieModel.producer)
-                            Spacer()
-                            DetailMovieMetadataRowView(label: "Release", value: movieModel.releaseDate)
+                    DetailsMovieTitleView(
+                        title: movieModel.title,
+                        originalTitle: movieModel.originalTitle)
+                    ForEach(movieModel.detailsMovie) { detail in
+                        VStack(alignment: .leading, spacing: 20) {
+                            HStack {
+                                DetailMovieMetadataRowView(
+                                    label: "Producer",
+                                    value: detail.producer)
+                                Spacer()
+                                DetailMovieMetadataRowView(
+                                    label: "Release",
+                                    value: detail.releaseDate)
+                            }
+                            HStack {
+                                DetailMovieMetadataRowView(
+                                    label: "Duration",
+                                    value: "\(detail.runningTime) m")
+                            }
+                            DetailsMovieDescriptionView(
+                                description: detail.description)
                         }
-                        
-                        HStack {
-                            DetailMovieMetadataRowView(label: "Duration", value: movieModel.runningTime)
-                        }
-                        DetailsMovieDescriptionView(description: movieModel.description)
+                        .padding(.horizontal)
+                        .padding(.bottom, 24)
                     }
-                    .padding(.horizontal)
-                    .padding(.bottom, 24)
                 }
             }
             DetailsMovieBackButtonView()

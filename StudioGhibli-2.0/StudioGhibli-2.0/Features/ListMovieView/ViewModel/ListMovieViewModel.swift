@@ -2,7 +2,7 @@ import SwiftUI
 
 @MainActor
 class ListMovieViewModel: ObservableObject {
-    @Published var state: ViewState<[MovieViewData]> = .idle
+    @Published var state: ViewState<[ListMovieDataModel]> = .idle
     
     private let service: APIService
     

@@ -5,10 +5,9 @@ class APIService {
     
     init(decoder: JSONDecoder = JSONDecoder()) {
         self.decoder = decoder
-        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
     
-    func fetchMovies() async throws -> [MovieViewData] {
+    func fetchMovies() async throws -> [ListMovieDataModel] {
         guard let url = URL(string: "https://ghibliapi.vercel.app/films/") else {
             throw URLError(.badURL)
         }
@@ -21,6 +20,6 @@ class APIService {
         }
         
         let apiMovies = try decoder.decode([MovieAPIModel].self, from: data)
-        return apiMovies.map { MovieViewData(from: $0) }
+        return apiMovies.map { ListMovieDataModel(from: $0) }
     }
 }

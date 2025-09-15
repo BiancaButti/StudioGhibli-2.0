@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ListMovieRowView: View {
-    let movie: MovieViewData
+    let movie: ListMovieDataModel
     
     var body: some View {
         HStack {
@@ -19,12 +19,11 @@ struct ListMovieRowView: View {
                     .lineLimit(2)
                     .layoutPriority(1)
             }
-
             Spacer()
             NavigationLink {
                 DetailsMovieView(movieModel: movie)
             } label: {
-                EmptyView()
+                Text("")
             }
         }
         .padding()
