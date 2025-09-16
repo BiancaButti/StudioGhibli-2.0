@@ -15,19 +15,23 @@ struct ListMovieGridView: View {
                 LazyVGrid(columns: columns, spacing: 16) {
                     ForEach(viewModel.filteredMovies) { movie in
                         NavigationLink(
-                            destination:
-                                DetailsMovieView(movie: movie)) {
-                                ListMovieRowView(movie: movie)
-                            }
-                            .buttonStyle(.automatic)
+                            destination: DetailsMovieView(movie: movie)
+                        ) {
+                            ListMovieRowView(movie: movie)
+                                .foregroundColor(.primary)
+                        }
+                        .buttonStyle(.automatic)
                     }
                 }
                 .padding(16)
             }
             .navigationTitle("Studio Ghibli Movies")
-            .searchable(text: $viewModel.searchText,
-                        placement: .navigationBarDrawer(displayMode: .always),
-                        prompt: "Search movies")
+            .searchable(
+                text: $viewModel.searchText,
+                placement: .navigationBarDrawer(displayMode: .automatic),
+                prompt: "Search movies"
+            )
         }
     }
 }
+
