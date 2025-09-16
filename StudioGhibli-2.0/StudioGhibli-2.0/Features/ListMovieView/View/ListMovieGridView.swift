@@ -25,11 +25,11 @@ struct ListMovieGridView: View {
                 }
                 .padding(16)
             }
-            .navigationTitle("Studio Ghibli Movies")
+            .navigationTitle("Studio Ghibli Works")
             .searchable(
                 text: $viewModel.searchText,
                 placement: .navigationBarDrawer(displayMode: .automatic),
-                prompt: "Search movies"
+                prompt: "Find a movie"
             )
         }
     }
