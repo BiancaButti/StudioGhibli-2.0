@@ -1,5 +1,3 @@
-# This workflow will build a Swift project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
 
 name: iOS CI
 
@@ -14,14 +12,24 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Xcode
+      - name: Select Xcode version
         run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
       - name: Build app
-        run: xcodebuild -scheme StudioGhibli-2.0 -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' build
+        run: |
+          xcodebuild \
+            -project StudioGhibli-2.0.xcodeproj \
+            -scheme "StudioGhibli-2.0" \
+            -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
+            build
 
       - name: Run tests
-        run: xcodebuild test -scheme StudioGhibli-2.0 -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest'
+        run: |
+          xcodebuild \
+            -project StudioGhibli-2.0.xcodeproj \
+            -scheme "StudioGhibli-2.0" \
+            -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
+            test
