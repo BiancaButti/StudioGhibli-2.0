@@ -1,28 +1,27 @@
 import SwiftUI
 
 struct DetailsMovieView: View {
-    let movieModel: ListMovieDataModel
+    let movie: ListMovieDataModel
     
     @Environment(\.dismiss)
     private var dismiss
-    
     @Namespace
     private var animation
-
+    
     var body: some View {
         ZStack(alignment: .topLeading) {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
                     ParallaxBannerView(
-                        url: movieModel.imageURL,
+                        url: movie.imageURL,
                         animation: animation,
                         onBack: { dismiss() }
                     )
                     
                     DetailsMovieTitleView(
-                        title: movieModel.title,
-                        originalTitle: movieModel.originalTitle)
-                    ForEach(movieModel.detailsMovie) { detail in
+                        title: movie.title,
+                        originalTitle: movie.originalTitle)
+                    ForEach(movie.detailsMovie) { detail in
                         VStack(alignment: .leading, spacing: 20) {
                             HStack {
                                 DetailMovieMetadataRowView(

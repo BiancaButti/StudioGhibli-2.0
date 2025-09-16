@@ -1,27 +1,32 @@
 import SwiftUI
 
 struct ListMovieView: View {
-    @StateObject private var viewModel = ListMovieViewModel()
+    @StateObject
+    private var viewModel = ListMovieViewModel()
     
     var body: some View {
         VStack {
             switch viewModel.state {
             case .idle:
-                EmptyView()
+                ProgressView("Loading...")
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .padding()
             case .loading:
                 ProgressView()
-            case .success(_):
-                NavigationStack {
-                    List(viewModel.state.value ?? []) { movie in
-                        ListMovieRowView(movie: movie)
-                    }
+            case .success( _):
+                ListMovieGridView(viewModel: viewModel)
+            case .failure( _):
+                EmptyStateView {
+                    fetchMovies()
                 }
-            case .failure(let error):
-                Text("Erro: \(error)")
             }
         }
         .task {
             await viewModel.fetchMovies()
         }
+    }
+    
+    private func fetchMovies() {
+        print("Tentar de novo clicado!")
     }
 }
