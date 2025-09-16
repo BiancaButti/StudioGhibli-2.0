@@ -8,7 +8,9 @@ struct ListMovieView: View {
         VStack {
             switch viewModel.state {
             case .idle:
-                EmptyView()
+                ProgressView("Loading...")
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .padding()
             case .loading:
                 ProgressView()
             case .success( _):

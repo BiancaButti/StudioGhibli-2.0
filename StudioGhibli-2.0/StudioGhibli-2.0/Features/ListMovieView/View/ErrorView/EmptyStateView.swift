@@ -37,8 +37,8 @@ struct EmptyStateView: View {
     }
 }
 
-struct EmptyStatePreview_Previews: PreviewProvider {
-    static var previews: some View {
-        EmptyStateView(retryAction: {})
-    }
-}
+//struct EmptyStatePreview_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EmptyStateView(retryAction: {})
+//    }
+//}
