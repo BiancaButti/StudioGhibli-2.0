@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct ListMovieView: View {
-    @StateObject private var viewModel = ListMovieViewModel()
+    @StateObject
+    private var viewModel = ListMovieViewModel()
     
     var body: some View {
         VStack {
@@ -11,11 +12,7 @@ struct ListMovieView: View {
             case .loading:
                 ProgressView()
             case .success(_):
-                NavigationStack {
-                    List(viewModel.state.value ?? []) { movie in
-                        ListMovieRowView(movie: movie)
-                    }
-                }
+                ListMovieGridView(viewModel: viewModel)
             case .failure(let error):
                 Text("Erro: \(error)")
             }

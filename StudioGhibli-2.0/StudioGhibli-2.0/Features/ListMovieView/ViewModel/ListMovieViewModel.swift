@@ -3,6 +3,7 @@ import SwiftUI
 @MainActor
 class ListMovieViewModel: ObservableObject {
     @Published var state: ViewState<[ListMovieDataModel]> = .idle
+    @Published var searchText: String = ""
     
     private let service: APIService
     
@@ -23,6 +24,15 @@ class ListMovieViewModel: ObservableObject {
             state = .failure(error.localizedDescription)
         }
     }
+    
+    var filteredMovies: [ListMovieDataModel] {
+        guard let movies = state.value else { return [] }
+        guard !searchText.isEmpty else { return movies }
+
+        let normalizedSearch = searchText.normalized
+        return movies.filter { ($0.title.normalized).contains(normalizedSearch) }
+    }
+
 }
 
 enum ViewState<T> {
@@ -44,5 +54,13 @@ enum ViewState<T> {
     var errorMessage: String? {
         if case .failure(let message) = self { return message }
         return nil
+    }
+}
+
+extension String {
+    var normalized: String {
+        self.folding(options: .diacriticInsensitive, locale: .current)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
     }
 }

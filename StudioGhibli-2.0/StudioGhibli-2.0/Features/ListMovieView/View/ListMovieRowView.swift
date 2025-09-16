@@ -2,30 +2,26 @@ import SwiftUI
 
 struct ListMovieRowView: View {
     let movie: ListMovieDataModel
-    
+
     var body: some View {
-        HStack {
+        VStack(alignment: .leading, spacing: 8) {
             AsyncImage(url: movie.imageURL) { image in
-                image.resizable().scaledToFill()
+                image.resizable()
+                     .scaledToFill()
+                     .frame(maxWidth: .infinity)
+                     .aspectRatio(2/3, contentMode: .fit)
+                     .clipped()
+                     .cornerRadius(8)
             } placeholder: {
                 Color.gray.opacity(0.3)
+                     .aspectRatio(2/3, contentMode: .fit)
+                     .cornerRadius(8)
             }
-            .frame(width: 80, height: 120)
-            .cornerRadius(8)
-            
-            VStack(alignment: .leading, spacing: 8) {
-                Text(movie.title)
-                    .font(.headline)
-                    .lineLimit(2)
-                    .layoutPriority(1)
-            }
-            Spacer()
-            NavigationLink {
-                DetailsMovieView(movieModel: movie)
-            } label: {
-                Text("")
-            }
+
+            Text(movie.title)
+                .font(.headline)
+                .lineLimit(2)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding()
     }
 }
