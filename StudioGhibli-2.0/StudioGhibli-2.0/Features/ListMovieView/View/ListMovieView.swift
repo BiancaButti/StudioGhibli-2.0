@@ -11,14 +11,20 @@ struct ListMovieView: View {
                 EmptyView()
             case .loading:
                 ProgressView()
-            case .success(_):
+            case .success( _):
                 ListMovieGridView(viewModel: viewModel)
-            case .failure(let error):
-                Text("Erro: \(error)")
+            case .failure( _):
+                EmptyStateView {
+                    fetchMovies()
+                }
             }
         }
         .task {
             await viewModel.fetchMovies()
         }
+    }
+    
+    private func fetchMovies() {
+        print("Tentar de novo clicado!")
     }
 }
